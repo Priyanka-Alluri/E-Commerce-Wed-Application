@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+      .topnav-right {
+  float: right;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav {
+    overflow: hidden;
+}
+    </style>
+</head>
+<nav class="navbar navbar-light bg-light justify-content-between" style="background-image: url('/static/images/allback.jpg'); background-repeat:repeat; background-size:100%; background-attachment: scroll;">
+  <a class="navbar-brand text-danger"><h2><strong>BuyBliss</strong><i class="bi bi-bag"></i></h2></a>
+</nav>
+<body style="background-image: url('/static/images/allback.jpg'); background-repeat:repeat; background-size:100%; background-attachment: scroll;">
+  <div class="topnav">
+    <a class="navbar-brand text-dark" href="home"><h1 class="m-3 pl-5  text-danger"><strong>Home</strong></h1></a>
+    <a class="navbar-brand text-dark" href="men"><h1 class="m-3 pl-5  text-danger"><strong>Men</strong></h1></a>
+    <a class="navbar-brand text-dark" href="women"><h1 class="m-3 pl-5  text-danger"><strong>Women</strong></h1></a>
+    <div class="topnav-right"> 
+    <a class="navbar-brand text-dark" href="viewwishlist"><h1 class="m-3 pl-5 text-danger"><strong><i class="bi bi-heart"></i></strong></h1></a>
+    <!--<a class="nav-link active navbar-right" href="viewwishlist"><h1 class="m-3 pr-5  text-danger"><strong><i class="bi bi-heart"></i></strong></h1></a>&nbsp;<a class="nav-link active navbar-right" href="viewcart"><h1 class="m-3 pr-5  text-danger"><strong><i class="bi bi-cart4"></i></strong></h1></a>-->
+    <a class="navbar-brand text-dark" href="viewcart"><h1 class="m-3 pl-5 text-danger"><strong><i class="bi bi-cart4"></i></strong></h1></a>
+        <a class="navbar-brand text-dark" href="/login"><h1 class="m-3 pl-5 text-danger"><strong><i class="bi bi-box-arrow-right"></i></strong></h1></a>
+      </div>
+    </div>
+    <body>
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-9">
+                  <div class="col-md-12 bg-danger text-white">&nbsp;<center><h5>Customer Details</h5></center></div>
+                  <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+
+            </div>
+            </div>
+            </div>
+                <script src="/static/js/bootstrap.min.js"></script>
+                <script src="/static/js/popper.min.js"></script>
+            </body>
+            </html>

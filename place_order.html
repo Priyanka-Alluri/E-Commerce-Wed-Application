@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+      .topnav-right {
+  float: right;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav {
+    overflow: hidden;
+}
+    </style>
+</head>
+<nav class="navbar navbar-light bg-light justify-content-between" style="background-image: url('/static/images/allback.jpg'); background-repeat:repeat; background-size:100%; background-attachment: scroll;">
+  <a class="navbar-brand text-danger"><h2><strong>BuyBliss</strong><i class="bi bi-bag"></i></h2></a>
+</nav>
+<body style="background-image: url('/static/images/allback.jpg'); background-repeat:repeat; background-size:100%; background-attachment: scroll;">
+  <div class="topnav">
+    <a class="navbar-brand text-dark" href="home"><h1 class="m-3 pl-5  text-danger"><strong>Home</strong></h1></a>
+    <a class="navbar-brand text-dark" href="men"><h1 class="m-3 pl-5  text-danger"><strong>Men</strong></h1></a>
+    <a class="navbar-brand text-dark" href="women"><h1 class="m-3 pl-5  text-danger"><strong>Women</strong></h1></a>
+    <div class="topnav-right"> 
+    <a class="navbar-brand text-dark" href="viewwishlist"><h1 class="m-3 pl-5 text-danger"><strong><i class="bi bi-heart"></i></strong></h1></a>
+    <!--<a class="nav-link active navbar-right" href="viewwishlist"><h1 class="m-3 pr-5  text-danger"><strong><i class="bi bi-heart"></i></strong></h1></a>&nbsp;<a class="nav-link active navbar-right" href="viewcart"><h1 class="m-3 pr-5  text-danger"><strong><i class="bi bi-cart4"></i></strong></h1></a>-->
+    <a class="navbar-brand text-dark" href="viewcart"><h1 class="m-3 pl-5 text-danger"><strong><i class="bi bi-cart4"></i></strong></h1></a>
+        <a class="navbar-brand text-dark" href="/login"><h1 class="m-3 pl-5 text-danger"><strong><i class="bi bi-box-arrow-right"></i></strong></h1></a>
+      </div>
+    </div>
+    <div class="offset-5 col-md-3 mt-2">
+        <a href='/makepayment'><input type="submit" class="btn btn-success" value="makepayment"></a>
+      </div>
+    <div class="container-fluid">
+<div class="row">
+    {% for x in products %}
+           <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4 mt-2">
+              <div class="w-auto-p-3">
+                <img src="{{x.pid.pimage.url}}" class="card-img-top" width='100%' height="400px" alt="...">
+            </div>
+          </div>
+           <div class="col-md-7 mt-5">
+            <p><strong>Product Name:</strong>&nbsp;{{x.pid.name}}</p>
+            <p><strong>Price:</strong>&nbsp;{{x.pid.price}}</p>
+{% if x.pid.women == False %}
+{% if x.pid.category == 1 %}
+<p class="card-text">Pant</p>
+{% elif x.pid.category == 2 %}
+<p class="card-text">Shirt</p>
+{% else %}
+<p class="card-text">Tshirt</p>
+{% endif %}
+{% else %}
+{% if x.pid.category == 1 %}
+<p class="card-text">Saree</p>
+{% elif x.pid.category == 2 %}
+<p class="card-text">Kurti</p>
+{% else %}
+<p class="card-text">Western</p>
+{% endif %}
+{% endif %}
+            <p><strong>Details:</strong>&nbsp;{{x.pid.details}}</p>
+            <div>
+              <p>{{ x.pid.name }} - ${{ x.pid.price }}</p>
+              <!-- Add a remove button with a link to the remove URL -->
+              <form action="{% url 'remove_item' x.id %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit">Remove</button>
+              </form>
+          </div>
+          </div>
+          </div>
+      </div><br>
+      <div class="container-fluid">
+        <div class="row">
+      
+    </div>
+  </div>
+      {% endfor %}
+      <center><p><b>Total Amount</b>:Rs.{{total}}</p></center>
+      <script src="/static/js/bootstrap.min.js"></script>
+      <script src="/static/js/popper.min.js"></script>
+    </body>
+    </html>

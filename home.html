@@ -1,0 +1,119 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+      .custom-navbar {
+          background-color: #333; /* Set the background color of the navbar */
+          border-radius: 50px; /* Adjust the border-radius to change the shape */
+      }
+      .img  {
+          background-color: #333; /* Set the background color of the navbar */
+          border-radius: 50px; /* Adjust the border-radius to change the shape */
+      }
+      .topnav-right{
+  float: right;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav {
+    overflow: hidden;
+}
+
+.search-form {
+  float: left;
+  margin-top: 18px;
+}
+
+.search-input {
+  padding: 6px;
+  margin-top: 18px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 3px;
+}
+
+.search-button {
+  padding: 6px 10px;
+  margin-top: 18px;
+  margin-right: 6px;
+  background: #b42929;
+  color:white;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+  </style>
+</head>
+
+<!--<input type="text">&nbsp;<input type="submit" class="btn btn-danger" value="search"></a>-->
+<!--<nav class="navbar navbar-light bg-white justify-content-between" style="background-image: url('/static/images/background.jpg'); background-repeat:no-repeat; background-size:100%; background-attachment: scroll;">-->
+  <div class="topnav">
+  <a class="navbar-brand text-dark" href="home"><h1 class="m-3 pl-5  text-danger"><strong><i class="bi bi-house-door"></i></strong></h1></a>
+  <div class="topnav-right">
+    <a class="navbar-brand text-dark" href="account"><h1 class="m-3 pl-5 text-danger"><strong><i class="bi bi-person-circle"></i></strong></h1></a>
+  <a class="navbar-brand text-dark" href="viewwishlist"><h1 class="m-3 pl-5 text-danger"><strong><i class="bi bi-heart"></i></strong></h1></a>
+  <!--<a class="nav-link active navbar-right" href="viewwishlist"><h1 class="m-3 pr-5  text-danger"><strong><i class="bi bi-heart"></i></strong></h1></a>&nbsp;<a class="nav-link active navbar-right" href="viewcart"><h1 class="m-3 pr-5  text-danger"><strong><i class="bi bi-cart4"></i></strong></h1></a>-->
+  <a class="navbar-brand text-dark" href="viewcart"><h1 class="m-3 pl-5 text-danger"><strong><i class="bi bi-cart4"></i></strong></h1></a>
+      <a class="navbar-brand text-dark" href="{% url 'user_logout' %}"><h1 class="m-3 pl-5 text-danger"><strong><i class="bi bi-box-arrow-right"></i></strong></h1></a>
+        {% csrf_token %}
+        <form action="{% url 'search' %}" method="get" class="search-form">
+          <input type="text" name="query" placeholder="Search..." class="search-input">
+          <button type="submit" class="search-button">Search</button>
+      </form>
+    </div>
+    </div>
+  </div>
+    <!--<form class="form-inline">
+      <div class="search-container">
+          <span class="border border-primary"><input type="text" class="search-input rounded" placeholder="Search..."></span>
+          <button class="search-button">Search</button>
+        </div>-->
+  
+
+
+<body style="background-image: url('/static/images/background.jpg'); background-repeat:no-repeat; background-size:100%; background-attachment: scroll;">
+ 
+ <div class="container-fluid">
+  <div class="row m1-3 p-4">
+    <div class="offset-1 col-md-4 rounded">
+    <h1 class="text-danger display-1"><b>Buy<i class="bi bi-bag"></i>Bliss</b></h1>
+    </div>
+  </div>
+</div>
+ <div class="container-fluid">
+  <div class="row">
+    <br>
+    <br> 
+    <br>
+  </div>
+</div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class=" offset-1 col-md-4">
+        <a href="/men"><img src="{% static 'images/menfashion.jpg' %}" height="250px" width="350px" class="img"></a>
+      </div>
+
+      <div class=" offset-1 col-md-4">
+        <a href="/women"><img src="{% static 'images/womensfashion.jpg' %}" height="250px" width="350px" class="img"></a>
+      </div>
+    </div>
+  </div>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/popper.min.js"></script>    
+</body>
+</html>

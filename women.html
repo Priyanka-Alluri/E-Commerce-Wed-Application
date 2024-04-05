@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+      .topnav-right {
+  float: right;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav {
+    overflow: hidden;
+}
+    </style>
+</head>
+<nav class="navbar navbar-light bg-light justify-content-between" style="background-image: url('/static/images/allback.jpg'); background-repeat:repeat; background-size:100%; background-attachment: scroll;">
+  <a class="navbar-brand text-danger"><h2><strong>BuyBliss</strong><i class="bi bi-bag"></i></h2></a>
+</nav>
+<body style="background-image: url('/static/images/allback.jpg'); background-repeat:repeat; background-size:100%; background-attachment: scroll;">
+  <div class="topnav">
+    <a class="navbar-brand text-dark" href="home"><h1 class="m-3 pl-5  text-danger"><strong>Home</strong></h1></a>
+    <a class="navbar-brand text-dark" href="men"><h1 class="m-3 pl-5  text-danger"><strong>Men</strong></h1></a>
+    <a class="navbar-brand text-dark" href="women"><h1 class="m-3 pl-5  text-danger"><strong>Women</strong></h1></a>
+    <div class="topnav-right"> 
+    <a class="navbar-brand text-dark" href="viewwishlist"><h1 class="m-3 pl-5 text-danger"><strong><i class="bi bi-heart"></i></strong></h1></a>
+    <!--<a class="nav-link active navbar-right" href="viewwishlist"><h1 class="m-3 pr-5  text-danger"><strong><i class="bi bi-heart"></i></strong></h1></a>&nbsp;<a class="nav-link active navbar-right" href="viewcart"><h1 class="m-3 pr-5  text-danger"><strong><i class="bi bi-cart4"></i></strong></h1></a>-->
+    <a class="navbar-brand text-dark" href="viewcart"><h1 class="m-3 pl-5 text-danger"><strong><i class="bi bi-cart4"></i></strong></h1></a>
+        <a class="navbar-brand text-dark" href="/login"><h1 class="m-3 pl-5 text-danger"><strong><i class="bi bi-box-arrow-right"></i></strong></h1></a>
+      </div>
+    </div>
+    <div class="container-fluid">
+<div class="row">
+    <div class="col-md-1">
+        <figure><a href='/saree'><img src='{%static "images/sareeicon.png" %}' class="rounded-circle" style="max-width: 100px;"></a>
+        <figcaption><center><b>Saree</b></center></figcaption>
+        </figure>
+        </div>
+    <div class="col-md-1">   
+        <figure><a href='/kurti'><img src='{%static "images/kurtiicon.png" %}' class="rounded-circle" style="max-width: 100px;"></a>
+          <figcaption><center><b>Kurti</b></center></figcaption>
+        </figure></div>
+        
+    <div class="col-md-1">   
+      <figure><a href='/western'><img src='{%static "images/westernwear.png" %}' class="rounded-circles" style="max-width: 100px;"></a>
+        <figcaption><center><b>Western</b></center></figcaption>
+      </figure></div>
+      
+        <div class="offset-1 col-md-4">
+            <form action="/rangestartf">
+                {% csrf_token %}
+                  <div class="mb-3">
+                      <label for="input1" class="form-label"><strong>startfrom:</strong> </label>
+                      <input type="number" name='min' class="form-control" id="input1"><br><input type="submit" class="btn btn-danger" value="search">
+                  </div>
+                </form>
+                </div>
+                <div class="col-md-4">
+                    <form action="/rangeunderf">
+                        {% csrf_token %}
+                          <div class="mb-3">
+                              <label for="input2" class="form-label"><strong>Under:</strong> </label>
+                              <input type="number" name='max' class="form-control" id="input2"><br><input type="submit" class="btn btn-danger" value="search">
+                          </div>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+    <div class="col-md-12 pl-3">
+        <div class="row mt-3">
+          {% for x in products %}
+          <div class="col-md-4 mt-3">
+            <div class="card" style="width: 18rem;">
+            <img src="{{x.pimage.url}}" class="card-img-top" width='80%' height="300px" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{x.name}}</h5>
+              <p class="card-text">{{x.price}}</p>
+              {% if x.women == True %}
+              {% if x.category == 1 %}
+              <p class="card-text">Saree</p>
+              {% elif x.category == 2 %}
+              <p class="card-text">Kurti</p>
+              {% else %}
+              <p class="card-text">Western</p>
+              {% endif %}
+              {% endif %}
+              <a href="/addtocart/{{x.id}}" class="btn btn-success">Add to cart</a>&nbsp;<a href="/wishlist/{{x.id}}" class="btn btn-primary">Wishlist</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+      <script src="/static/js/bootstrap.min.js"></script>
+      <script src="/static/js/popper.min.js"></script>
+    </body>
+  </html>
